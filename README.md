@@ -77,7 +77,7 @@ To set up the project:
    ```
 3. **Run the preprocessing script**:
    ```
-   python preprocessing/pre_processing_similar_code_snippets.ipynb
+   pre_processing_similar_code_snippets.ipynb
    ```
 
 Ensure to replace `<repo-url>` with the actual URL of your GitHub repository. This README provides a complete overview of the preprocessing stage, setting the stage for subsequent phases of the project.
