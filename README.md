@@ -1,83 +1,95 @@
-# Semantically Similar Code Snippet Retrieval (SSCSR)
+Here's a corrected version of the `README.md` file with better alignment and formatting to ensure consistency across sections and improve readability:
 
-## Project Overview
+```markdown
+# Code Snippet Similarity Search
 
-The SSCSR project is tasked with retrieving code snippets that are semantically similar to a given code query using the POJ-104 dataset. This stage involves preprocessing of the data to ensure it is formatted correctly for subsequent feature extraction and model training.
+This project implements a Flask-based web application for retrieving semantically similar code snippets. It uses a machine learning model to generate embeddings for code snippets and employs a FAISS index for efficient similarity searches.
 
-## Dataset
+## Project Structure
 
-We utilize the [POJ-104](https://arxiv.org/pdf/1409.5718.pdf) dataset, which contains pairs of semantically similar code snippets, for this task.
-
-### Download and Preprocess
-
-1. **Download dataset** from [website](https://drive.google.com/file/d/0B2i-vWnOu7MxVlJwQXN6eVNONUU/view?usp=sharing) or run the following command:
-   ```shell
-   cd dataset
-   pip install gdown
-   gdown https://drive.google.com/uc?id=0B2i-vWnOu7MxVlJwQXN6eVNONUU
-   tar -xvf programs.tar.gz
-   cd ..
-   ```
-
-2. **Preprocess data** with the script prepared by Yuvaraj Gajalajamjam:
-   ```shell
-   cd dataset
-   python preprocess.py
-   cd ..
-   ```
-
-### Data Format
-
-After preprocessing, you will have three .jsonl files: train.jsonl, valid.jsonl, and test.jsonl. Each line in these files represents one function, formatted as follows:
-- **code:** the source code.
-- **label:** the problem number that the code snippet solves.
-- **index:** the example index.
-
-### Data Statistics
-
-Here are the statistics of the dataset after preprocessing:
-
-|       | #Problems | #Examples |
-| ----- | --------- | :-------: |
-| Train | 64        |  32,000   |
-| Dev   | 16        |   8,000   |
-| Test  | 24        |  12,000   |
-
-## Current Stage: Data Preprocessing
-
-This stage's key contributions include:
-- **Normalization and Tokenization**: Converting the raw code snippets into a standardized format.
-- **Splitting Data**: Dividing the dataset into training, validation, and testing sets to prepare for the model training phase.
-
-### Preprocessing Script
-
-Yuvaraj Gajalajamjam has prepared the preprocessing script, which normalizes and tokenizes the data, preparing it for the next stages of the project.
-
-## Next Steps
-
-- **Feature Extraction**: Techniques such as Word2Vec will be used for vectorizing code tokens.
-- **Semantic Embedding**: Code vectors will be transformed into semantic embeddings using models like CodeBERT.
-
-## Repository Structure
-
-```
-/preprocessing/ - Contains Jupyter notebooks and scripts for data preprocessing.
+/flask_app
+│
+├── /fine_tuned_model
+│   ├── config.json
+│   ├── model.safetensors
+│   ├── special_tokens_map.json
+│   ├── tokenizer.json
+│   ├── tokenizer_config.json
+│   └── vocab.txt
+│
+├── /static
+│   ├── /css
+│   │   └── style.css
+│   ├── /js
+│   └── /images
+│
+├── /templates
+│   ├── index.html
+│   └── results.html
+│
+├── app.py
+├── model.py
+├── faiss_index.index
+├── fine_tuned_model.pth
+├── fine_tuned_model.pkl
+├── test_embeddings.npy
+├── train_embeddings.npy
+├── valid_embeddings.npy
+├── requirements.txt
+└── README.md
 ```
 
-## Installation and Usage
+## Installation
 
-To set up the project:
-1. **Clone the repository**:
+### Prerequisites
+- Python 3.8 or higher
+- pip3
+
+### Setup Instructions
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yuvi-crypto/Semantically-similar-code-snippet-Clones-retrieval.git
+   cd Semantically-similar-code-snippet-Clones-retrieval
    ```
-   !git clone https://github.com/microsoft/CodeXGLUE.git
-   ```
-2. **Install dependencies**:
-   ```
+
+2. **Install dependencies:**
+   ```bash
    pip install -r requirements.txt
    ```
-3. **Run the preprocessing script**:
-   ```
-   pre_processing_similar_code_snippets.ipynb
+
+3. **Run the application:**
+   ```bash
+   python app.py
    ```
 
-Ensure to replace `<repo-url>` with the actual URL of your GitHub repository. This README provides a complete overview of the preprocessing stage, setting the stage for subsequent phases of the project.
+This will start the Flask server on `http://localhost:5000`, and you can navigate to this address in your web browser to use the application.
+
+## Usage
+
+1. **Home Page:**
+   - Access the home page at `http://localhost:5000`.
+   - Enter a code snippet in the provided text area.
+
+2. **Search Similar Code Snippets:**
+   - Click the 'Find Similar Code' button after entering your snippet.
+   - The system will display the top similar code snippets based on semantic similarity.
+
+## Features
+
+- **Code Snippet Input**: Users can input any code snippet to find similar code snippets.
+- **Semantic Similarity Search**: Uses advanced NLP models to understand the semantics of the code.
+- **FAISS Indexing**: Leverages FAISS for fast and efficient similarity search.
+
+## Contributing
+
+Contributions to the project are welcome! Please refer to the following steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -am 'Add some feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a new Pull Request.
+
+
+For any queries, you can reach out to [yuvaraj.gajalajamgam@students.iiit.ac.in](mailto:yuvaraj.gajalajamgam@students.iiit.ac.in).
